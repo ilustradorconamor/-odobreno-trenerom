@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f1eb">
+<title>Одобрено тренером</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f1eb;color:#20201e;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}.app{max-width:720px;margin:auto;padding:18px 16px 100px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.brand{font-weight:800;font-size:19px}.cart{background:#20201e;color:#fff;border:0;border-radius:999px;padding:9px 13px}.hero{background:#d9e7cf;border-radius:28px;padding:26px 22px;margin-bottom:24px}.eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:1.5px;font-weight:700;opacity:.6}.hero h1{font-size:36px;line-height:.98;letter-spacing:-1.8px;margin:10px 0 8px}.hero p{margin:0;font-size:15px;line-height:1.35}h2{font-size:24px;margin:0 0 14px}.chips{display:flex;gap:8px;overflow:auto;margin-bottom:22px}.chip{background:#fff;border:1px solid #e1ddd5;border-radius:999px;padding:9px 14px;white-space:nowrap}.chip.active{background:#20201e;color:#fff}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:#fff;border-radius:22px;overflow:hidden}.photo{aspect-ratio:1;background-position:center;background-size:cover;background-repeat:no-repeat}.body{padding:14px}.meta{font-size:12px;opacity:.55;margin-bottom:5px}.name{font-weight:750;font-size:17px;line-height:1.08;min-height:38px}.kbju{font-size:12px;line-height:1.35;margin-top:8px;opacity:.72}.price-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:13px}.price{font-weight:800}.add{border:0;background:#20201e;color:#fff;border-radius:999px;padding:8px 12px}.variants{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.variant{border:1px solid #ddd7ce;background:#f8f6f2;border-radius:999px;padding:7px 9px;font-size:11px}.bottom{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:linear-gradient(transparent,#f4f1eb 35%);pointer-events:none}.bottom-inner{max-width:720px;margin:auto;pointer-events:auto}.cartbar{width:100%;border:0;border-radius:18px;background:#20201e;color:#fff;padding:15px 17px;display:flex;justify-content:space-between;font-weight:750}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.28);display:none;align-items:flex-end;z-index:10}.overlay.show{display:flex}.sheet{background:#fff;width:100%;max-height:90vh;overflow:auto;border-radius:28px 28px 0 0;padding:20px 16px 30px}.sheet-inner{max-width:720px;margin:auto}.sheet-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.close{border:0;background:#f1eee8;border-radius:50%;width:36px;height:36px}.cart-item{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #eee}.item-name{font-weight:650}.item-sub{font-size:12px;opacity:.55;margin-top:3px}.qty{display:flex;align-items:center;gap:8px}.qty button{width:30px;height:30px;border:0;border-radius:50%;background:#f1eee8}.total{display:flex;justify-content:space-between;font-size:20px;font-weight:800;padding:18px 0}.form{display:grid;gap:10px}.form input,.form textarea{width:100%;border:1px solid #ddd7ce;border-radius:14px;padding:12px 13px;background:#faf9f6}.form textarea{min-height:80px}.submit{border:0;background:#20201e;color:#fff;border-radius:16px;padding:14px;font-weight:750}.note{font-size:12px;line-height:1.4;opacity:.58;margin-top:12px}@media(max-width:560px){.name{font-size:15px}.body{padding:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="top"><div class="brand">ОДОБРЕНО ТРЕНЕРОМ</div><button class="cart" id="topCart">🛒 <span id="topCount">0</span></button></div>
+<section class="hero"><div class="eyebrow">домашняя еда</div><h1>Вкусно.<br>Удобно.<br>Много белка.</h1><p>Готовая еда, заготовки и перекусы с подсчитанным КБЖУ.</p></section>
+<div class="chips"><button class="chip active" data-cat="all">Все</button><button class="chip" data-cat="meal">Готовая еда</button><button class="chip" data-cat="prep">Заготовки</button><button class="chip" data-cat="snack">Перекусы</button></div>
+<h2>Меню</h2><div class="grid" id="grid"></div>
+</div>
+<div class="bottom"><div class="bottom-inner"><button class="cartbar" id="bottomCart"><span>Корзина · <span id="bottomCount">0</span></span><span id="bottomTotal">0 USDT</span></button></div></div>
+<div class="overlay" id="overlay"><div class="sheet"><div class="sheet-inner">
+<div class="sheet-top"><h2 style="margin:0">Корзина</h2><button class="close" id="close">×</button></div>
+<div id="cartItems"></div><div class="total"><span>Итого</span><span id="total">0 USDT</span></div>
+<div class="form"><input id="name" placeholder="Имя"><input id="phone" placeholder="Телефон / WhatsApp"><textarea id="comment" placeholder="Комментарий к заказу"></textarea><button class="submit" id="submit">Отправить заказ</button></div>
+<div class="note">Оплата в USDT или в песо по актуальному курсу. Доставка замороженной продукции — через Uber: заказ подготовим и упакуем, курьера можно вызвать самостоятельно в удобное время.</div>
+</div></div></div>
+<script>
+const I="https://raw.githubusercontent.com/ilustradorconamor/-odobreno-trenerom/main/";
+const P=[
+{id:"soup",cat:"meal",name:"Суп-пюре с куриными фрикадельками",meta:"300 г",price:6,img:I+"4CE3C41D-A4F6-4FE3-9A15-038373442DED.png",kbju:"295 ккал / Б 32 г / Ж 5 г / У 27 г"},
+{id:"carrot",cat:"meal",name:"Морковка по-корейски",meta:"300 г",price:4,img:I+"B4644884-89CF-4F28-970F-8974E494E2CA.png",kbju:"100 ккал / Б 1 г / Ж 8 г / У 9 г на 100 г"},
+{id:"quad",cat:"prep",name:"Квадлеты куриные «Огурец-лук»",meta:"350 г · 4 шт",price:7,img:I+"4CB6D5F5-3802-434F-A33A-755FAD06EF76.png",kbju:"350 ккал / Б 70 г / Ж 4 г / У 4 г на упаковку"},
+{id:"jerky",cat:"snack",name:"Джерки «куриные палочки»",meta:"перекус",price:11,img:I+"6C9214CD-0507-437D-84E4-3A3B7553F961.png",kbju:"150 ккал / Б 25 г / Ж 1,5 г / У 0 г на 50 г",variants:[["100 г (2 × 50 г)",11],["200 г (4 × 50 г)",20],["300 г (6 × 50 г)",27],["400 г (8 × 50 г)",34]]},
+{id:"dumplings",cat:"prep",name:"Пельмени азиатские с курицей + соус",meta:"1 кг",price:15,img:I+"1037A786-BE03-4E4F-9E57-A1784122D503.png",kbju:"218 ккал / Б 18,4 г / Ж 2,5 г / У 32 г на 100 г"},
+{id:"kefir",cat:"snack",name:"Кефир 3%",meta:"250 мл · перекус",price:2,img:I+"B1882545-2828-4D8F-B888-63144D7C9006.png",kbju:"140 ккал / Б 7,5 г / Ж 7,5 г / У 11 г"}];
+let C=[];
+const G=document.getElementById("grid");
+function render(cat="all"){G.innerHTML=P.filter(p=>cat==="all"||p.cat===cat).map(p=>'<article class="card"><div class="photo" style="background-image:url('+p.img+')"></div><div class="body"><div class="meta">'+p.meta+'</div><div class="name">'+p.name+'</div><div class="kbju">'+p.kbju+'</div><div class="price-row"><span class="price">'+(p.variants?'от ':'')+p.price+' USDT</span>'+(p.variants?'':'<button class="add" data-id="'+p.id+'">Добавить</button>')+'</div>'+(p.variants?'<div class="variants">'+p.variants.map((v,i)=>'<button class="variant" data-id="'+p.id+'" data-v="'+i+'">'+v[0]+' · '+v[1]+' USDT</button>').join("")+'</div>':'')+'</div></article>').join("")}
+function add(id,vi=null){const p=P.find(x=>x.id===id),v=vi===null?null:p.variants[vi],key=id+":"+vi,x=C.find(a=>a.key===key);x?x.qty++:C.push({key,name:p.name,variant:v?v[0]:"",price:v?v[1]:p.price,qty:1});update()}
+function update(){const n=C.reduce((a,x)=>a+x.qty,0),t=C.reduce((a,x)=>a+x.qty*x.price,0);topCount.textContent=n;bottomCount.textContent=n;bottomTotal.textContent=t+" USDT";total.textContent=t+" USDT";cartItems.innerHTML=C.length?C.map(x=>'<div class="cart-item"><div><div class="item-name">'+x.name+'</div><div class="item-sub">'+x.variant+' · '+x.price+' USDT</div></div><div class="qty"><button data-k="'+x.key+'" data-d="-1">−</button><b>'+x.qty+'</b><button data-k="'+x.key+'" data-d="1">+</button></div></div>').join(""):'<div style="opacity:.6;padding:20px 0">Корзина пока пустая</div>'}
+G.onclick=e=>{const a=e.target.closest(".add"),v=e.target.closest(".variant");if(a)add(a.dataset.id);if(v)add(v.dataset.id,+v.dataset.v)};
+document.querySelectorAll(".chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".chip").forEach(y=>y.classList.remove("active"));x.classList.add("active");render(x.dataset.cat)});
+cartItems.onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;const x=C.find(i=>i.key===b.dataset.k);x.qty+=+b.dataset.d;if(x.qty<1)C=C.filter(i=>i!==x);update()};
+function openCart(){overlay.classList.add("show");update()}topCart.onclick=openCart;bottomCart.onclick=openCart;close.onclick=()=>overlay.classList.remove("show");
+submit.onclick=async()=>{if(!C.length)return alert("Корзина пустая");submit.disabled=true;submit.textContent="Отправляем…";try{const r=await fetch("/api/order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:C,name:name.value,phone:phone.value,comment:comment.value,initData:window.Telegram?.WebApp?.initData||""})}),j=await r.json();if(!r.ok)throw Error(j.error||"Ошибка");alert("Заказ отправлен 🤗");C=[];update();overlay.classList.remove("show")}catch(e){alert(e.message)}finally{submit.disabled=false;submit.textContent="Отправить заказ"}};
+render();update();if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}
+</script>
+</body></html>
