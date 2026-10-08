@@ -40,8 +40,8 @@ const P=[
 {id:"carrot",cat:"meal",name:"Морковка по-корейски",meta:"300 г",price:4,img:I+"B4644884-89CF-4F28-970F-8974E494E2CA.png",kbju:"на 100 г · 100 ккал<br>Б1 · Ж8 · У9"},
 {id:"quad",cat:"prep",name:"Квадлеты куриные «Огурец-лук»",meta:"350 г · 4 шт",price:7,img:I+"4CB6D5F5-3802-434F-A33A-755FAD06EF76.png",kbju:"на 350 г · 350 ккал<br>Б70 · Ж4 · У4"},
 {id:"jerky",cat:"snack",name:"Джерки «куриные палочки»",meta:"перекус",price:11,img:I+"6C9214CD-0507-437D-84E4-3A3B7553F961.png",kbju:"на 50 г · 150 ккал<br>Б25 · Ж1,5 · У0",variants:[["100 г (2 × 50 г)",11],["200 г (4 × 50 г)",20],["300 г (6 × 50 г)",27],["400 г (8 × 50 г)",34]]},
-{id:"dumplings",cat:"prep",name:"Пельмени азиатские с курицей + соус",meta:"1 кг",price:15,img:I+"1037A786-BE03-4E4F-9E57-A1784122D503.png",kbju:"на 100 г · 218 ккал<br>Б18,4 · Ж2,5 · У32"},
-{id:"kefir",cat:"snack",name:"Кефир 3%",meta:"250 мл · перекус",price:2,img:I+"B1882545-2828-4D8F-B888-63144D7C9006.png",kbju:"140 ккал / Б 7,5 г / Ж 7,5 г / У 11 г"}];
+{id:"dumplings",cat:"prep",name:"Пельмени азиатские с курицей",meta:"1 кг",price:15,img:I+"1037A786-BE03-4E4F-9E57-A1784122D503.png",kbju:"на 100 г · 218 ккал<br>Б18,4 · Ж2,5 · У32"},
+{id:"kefir",cat:"snack",name:"Кефир 3%",meta:"250 мл · перекус",price:2,img:I+"B1882545-2828-4D8F-B888-63144D7C9006.png",kbju:"на 250 мл · 140 ккал<br>Б7,5 · Ж7,5 · У11"}];
 let C=[];
 const G=document.getElementById("grid");
 function render(cat="all"){G.innerHTML=P.filter(p=>cat==="all"||p.cat===cat).map(p=>'<article class="card"><div class="photo" style="background-image:url('+p.img+')"></div><div class="body"><div class="kbju">'+p.kbju+'</div><div class="name">'+p.name+'</div><div class="meta">'+p.meta+'</div><div class="price-row"><span class="price">'+(p.variants?'от ':'')+p.price+' USDT</span>'+(p.variants?'':'<button class="add" data-id="'+p.id+'">Добавить</button>')+'</div>'+(p.variants?'<div class="variants">'+p.variants.map((v,i)=>'<button class="variant" data-id="'+p.id+'" data-v="'+i+'">'+v[0]+' · '+v[1]+' USDT</button>').join("")+'</div>':'')+'</div></article>').join("")}
