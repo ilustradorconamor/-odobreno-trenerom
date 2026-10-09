@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     const {items=[],name="",phone="",comment=""} = req.body || {};
     const total = items.reduce((s,x)=>s + Number(x.price||0)*Number(x.qty||0),0);
     const lines = items.map(x => `• ${x.name}${x.variant ? ` — ${x.variant}` : ""} × ${x.qty} = ${Number(x.price||0)*Number(x.qty||0)} USDT`).join("\n");
-    const text = `🛒 НОВЫЙ ЗАКАЗ\n\n${lines}\n\nИтого: ${total} USDT\n\nИмя: ${name || "—"}\nТелефон / WhatsApp: ${phone || "—"}\nКомментарий: ${comment || "—"}`;
+    const text = `🛒 НОВЫЙ ЗАКАЗ\n\n${lines}\n\nИтого: ${total} USDT\n\nИмя: ${name || "—"}\nНик/номер в Телеграм: ${phone || "—"}\nКомментарий: ${comment || "—"}`;
     const r = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
