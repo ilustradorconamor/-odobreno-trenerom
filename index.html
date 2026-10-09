@@ -378,7 +378,26 @@ document.getElementById("calculateCalories").onclick = () => {
     (sex === "male" ? 5 : -161);
 
   const maintenance = Math.round(bmr * activity);
+  const deficit = Math.round(maintenance * 0.85);
+  const surplus = Math.round(maintenance * 1.10);
 
+  const maintenanceProtein = Math.round(weight * 1.8);
+  const maintenanceFat = Math.round(weight);
+  const maintenanceCarbs = Math.round(
+    (maintenance - maintenanceProtein * 4 - maintenanceFat * 9) / 4
+  );
+
+  const deficitProtein = Math.round(weight * 2);
+  const deficitFat = Math.round(weight);
+  const deficitCarbs = Math.round(
+    (deficit - deficitProtein * 4 - deficitFat * 9) / 4
+  );
+
+  const surplusProtein = Math.round(weight * 1.8);
+  const surplusFat = Math.round(weight);
+  const surplusCarbs = Math.round(
+    (surplus - surplusProtein * 4 - surplusFat * 9) / 4
+  );
   document.getElementById("calcMaintain").textContent =
     maintenance.toLocaleString("ru-RU");
 
