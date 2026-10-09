@@ -277,22 +277,41 @@ font-weight:600;
     <button class="calc-submit" id="calculateCalories">Рассчитать калории</button>
 
     <div class="calc-results" id="calcResults">
+      
       <div class="calc-maintenance">
-        <div class="calc-result-label">Поддержание веса</div>
-        <div class="calc-result-number" id="calcMaintain">—</div>
-        <div class="calc-result-label">ккал в день</div>
+        <div class="calc-maintenance-info">
+          <div class="calc-result-label">Поддержание веса</div>
+          <div class="calc-result-number" id="calcMaintain">—</div>
+          <div class="calc-result-label">ккал в день</div>
+        </div>
+        <div class="calc-macros calc-maintain-macros" id="calcMaintainMacros">
+          <div>Б <span id="maintainProtein">—</span> г</div>
+          <div>Ж <span id="maintainFat">—</span> г</div>
+          <div>У <span id="maintainCarbs">—</span> г</div>
+        </div>
       </div>
       <div class="calc-options">
         <div class="calc-option">
           <div class="calc-result-label">Умеренный дефицит</div>
           <strong id="calcDeficit">—</strong>
           <div class="calc-result-label">ккал в день</div>
+          <div class="calc-macros calc-option-macros" id="calcDeficitMacros">
+            Б <span id="deficitProtein">—</span> ·
+            Ж <span id="deficitFat">—</span> ·
+            У <span id="deficitCarbs">—</span> г
+          </div>
         </div>
         <div class="calc-option">
           <div class="calc-result-label">Умеренный профицит</div>
           <strong id="calcSurplus">—</strong>
           <div class="calc-result-label">ккал в день</div>
+          <div class="calc-macros calc-option-macros" id="calcSurplusMacros">
+            Б <span id="surplusProtein">—</span> ·
+            Ж <span id="surplusFat">—</span> ·
+            У <span id="surplusCarbs">—</span> г
+          </div>
         </div>
+      </div>
       </div>
       <p class="calc-note">Расчёт приблизительный: индивидуальная потребность может отличаться.</p>
     </div>
