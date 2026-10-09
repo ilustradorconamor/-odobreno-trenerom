@@ -20,7 +20,13 @@ export default async function handler(req, res) {
     if (message?.text === "/start" || message?.text?.startsWith("/start ")) {
       const { BOT_TOKEN } = process.env;
 
-      const welcomeText = "ТВОЁ ПРИВЕТСТВИЕ";
+      const welcomeText = `Привет! ❤️ Добро пожаловать в «Одобрено тренером»!
+
+Мы готовим вкусную еду с хорошим составом, чтобы заботиться о фигуре и здоровье было проще. Много белка, понятное КБЖУ и меньше времени на готовку 💪
+
+🛒 Нажимайте на кнопку «Магазин», знакомьтесь с меню и собирайте свой заказ.
+
+Будем рады стать частью вашего рациона! 💚`;
 
       const response = await fetch(
         `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
@@ -33,7 +39,7 @@ export default async function handler(req, res) {
             reply_markup: {
               inline_keyboard: [[
                 {
-                  text: "🛒 Открыть магазин",
+                  text: "🛒 МАГАЗИН",
                   web_app: {
                     url: "https://odobreno-trenerom-scrapy-coco.vercel.app"
                   }
