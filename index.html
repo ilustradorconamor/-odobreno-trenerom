@@ -335,6 +335,40 @@ document.addEventListener("keydown", e => {
     calcOverlay.classList.remove("show");
   }
 });
-  render();update();if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}
+
+document.getElementById("calculateCalories").onclick = () => {
+  const sex = document.getElementById("calcSex").value;
+  const age = Number(document.getElementById("calcAge").value);
+  const height = Number(document.getElementById("calcHeight").value);
+  const weight = Number(document.getElementById("calcWeight").value);
+  const activity = Number(document.getElementById("calcActivity").value);
+
+  if (
+    !Number.isFinite(age) || age < 18 || age > 100 ||
+    !Number.isFinite(height) || height < 120 || height > 230 ||
+    !Number.isFinite(weight) || weight < 30 || weight > 300
+  ) {
+    alert("Проверь возраст, рост и вес.");
+    return;
+  }
+
+  const bmr =
+    10 * weight + 6.25 * height - 5 * age +
+    (sex === "male" ? 5 : -161);
+
+  const maintenance = Math.round(bmr * activity);
+
+  document.getElementById("calcMaintain").textContent =
+    maintenance.toLocaleString("ru-RU");
+
+  document.getElementById("calcDeficit").textContent =
+    Math.round(maintenance * 0.85).toLocaleString("ru-RU");
+
+  document.getElementById("calcSurplus").textContent =
+    Math.round(maintenance * 1.10).toLocaleString("ru-RU");
+
+  document.getElementById("calcResults").classList.add("show");
+};
+render();update();if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}
 </script>
 </body></html>
