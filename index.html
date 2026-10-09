@@ -407,6 +407,18 @@ document.getElementById("calculateCalories").onclick = () => {
   document.getElementById("calcSurplus").textContent =
     Math.round(maintenance * 1.10).toLocaleString("ru-RU");
 
+  document.getElementById("maintainProtein").textContent = maintenanceProtein;
+  document.getElementById("maintainFat").textContent = maintenanceFat;
+  document.getElementById("maintainCarbs").textContent = maintenanceCarbs;
+
+  document.getElementById("deficitProtein").textContent = deficitProtein;
+  document.getElementById("deficitFat").textContent = deficitFat;
+  document.getElementById("deficitCarbs").textContent = deficitCarbs;
+
+  document.getElementById("surplusProtein").textContent = surplusProtein;
+  document.getElementById("surplusFat").textContent = surplusFat;
+  document.getElementById("surplusCarbs").textContent = surplusCarbs;
+
   document.getElementById("calcResults").classList.add("show");
 };
 render();update();if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}
