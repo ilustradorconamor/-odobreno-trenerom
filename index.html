@@ -314,6 +314,27 @@ document.querySelectorAll(".chip").forEach(x=>x.onclick=()=>{document.querySelec
 cartItems.onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;const x=C.find(i=>i.key===b.dataset.k);x.qty+=+b.dataset.d;if(x.qty<1)C=C.filter(i=>i!==x);update()};
 function openCart(){overlay.classList.add("show");update()}topCart.onclick=openCart;bottomCart.onclick=openCart;document.getElementById("close").onclick=()=>document.getElementById("overlay").classList.remove("show");
 submit.onclick=async()=>{if(!C.length)return alert("Корзина пустая");submit.disabled=true;submit.textContent="Отправляем…";try{const r=await fetch("/api/order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:C,name:document.getElementById("name").value,phone:phone.value,comment:comment.value,initData:window.Telegram?.WebApp?.initData||""})}),j=await r.json();if(!r.ok)throw Error(j.error||"Ошибка");alert("Заказ отправлен 🤗");C=[];update();overlay.classList.remove("show")}catch(e){alert(e.message)}finally{submit.disabled=false;submit.textContent="Отправить заказ"}};
-render();update();if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}
+const calcOverlay = document.getElementById("calcOverlay");
+
+document.getElementById("openCalculator").onclick = () => {
+  calcOverlay.classList.add("show");
+};
+
+document.getElementById("closeCalculator").onclick = () => {
+  calcOverlay.classList.remove("show");
+};
+
+calcOverlay.addEventListener("click", e => {
+  if (e.target === calcOverlay) {
+    calcOverlay.classList.remove("show");
+  }
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    calcOverlay.classList.remove("show");
+  }
+});
+  render();update();if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}
 </script>
 </body></html>
