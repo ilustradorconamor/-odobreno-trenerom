@@ -26,7 +26,9 @@ export default async function handler(req, res) {
 
 🛒 Нажимайте на кнопку «Магазин», знакомьтесь с меню и собирайте свой заказ.
 
-Будем рады стать частью вашего рациона! 💚`;
+Будем рады стать частью вашего рациона! 💚
+
+🕒 Пожалуйста, оформляйте заказы за 24 часа до получения ❤️`;
 
       const response = await fetch(
         `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
